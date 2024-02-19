@@ -1,58 +1,46 @@
 #include "sort.h"
-
+#include <stdio.h>
 /**
- * swap - Function that swaps two values
- *
- * @j: Fisrt value
- * @b: Second value
- * Return: 0
+ * _swap - swaped two integers
+ * @array: the array that values are swaped.
+ * @a: First index
+ * @b: Second index
+ * Return: Null
  */
-void swap(int *j, int *b)
+void _swap(int *array, int a, int b)
 {
 	int tmp;
 
-	tmp = *b;
-	*b = *j;
-	*b = tmp;
-}
-
-/**
- * gap_sort - sort array with gaps
- * @array: array to be sorted
- * @size: array size
- * @gap: size gap
- */
-void gap_sort(int *array, size_t size, unsigned int gap)
-{
-	size_t j, b;
-
-	for (j = gap; j < size; j++)
+	if (array[a] != array[b])
 	{
-		b = j;
-		while (b >= gap && array[b] < array[b - gap])
-		{
-			swap(array + b, array + b - gap);
-			b -= gap;
-		}
+		tmp = array[a];
+		array[a] = array[b];
+		array[b] = tmp;
 	}
 }
 
 /**
- * shell_sort - shell sort
- * @array: array to be sorted
- * @size: size of array
+ * shell_sort - sort the list and print the changes
+ * @array: The array to sort.
+ * @size: Size of the array
+ * Return: Nothing
  */
 void shell_sort(int *array, size_t size)
 {
-	unsigned int gap = 1;
+	size_t c = 0,  a, b;
 
-	while (gap < size / 3)
-		gap = gap * 3 + 1;
+	if (size < 2)
+		return;
 
-	while (gap >= 1)
+	while (c <= size / 3)
+		c = c * 3 + 1;
+
+	while (c >= 1)
 	{
-		gap_sort(array, size, gap);
-		gap = (gap - 1) / 3;
+		for (a = c; a < size; a++)
+			for (b = a; b >= c && array[b] < array[b - c]; b -= c)
+				_swap(array, b, b - c);
+		c /= 3;
 		print_array(array, size);
 	}
 }
