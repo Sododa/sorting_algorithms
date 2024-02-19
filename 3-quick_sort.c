@@ -2,8 +2,8 @@
 
 /**
  * swap - Function that swaps two integers
- * @i: first integer
- * @j: second integer
+ * @j: first integer
+ * @b: second integer
  *
  * Return: Null
  */
@@ -58,7 +58,8 @@ int partition(int *array, int start, int end, size_t size)
 
 
 /**
- * my_quick_sort - function sorts an array of integers in ascending order using the
+ * my_quick_sort - function sorts an array of integers
+ * in ascending order using the
  * Quick sort algorithm with the Lomuto partition scheme
  * @array: prints the array to be sorted
  * @start: the start of the array
