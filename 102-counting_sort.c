@@ -9,15 +9,15 @@
 int _largest(int *array, size_t size)
 {
 	size_t a;
-	int c = 0;
+	int k = 0;
 
 	for (a = 0; a < size; a++)
 	{
-		if (c < array[a])
-			c = array[a];
+		if (k < array[a])
+			k = array[a];
 	}
 
-	return (c);
+	return (k);
 }
 /**
  * _memset -  Create a integer array and set each space in 0
@@ -45,23 +45,23 @@ int *_memset(int size)
 void counting_sort(int *array, size_t size)
 {
 	size_t a, b;
-	int c = 0;
+	int k = 0;
 	int *ptr = NULL, *sort_ar = NULL;
 
 	if (size < 2)
 		return;
-	c = _largest(array, size);
-	ptr = _memset(c + 1);
+	k = _largest(array, size);
+	ptr = _memset(k + 1);
 	if (!ptr)
 		return;
 	for (a = 0; a < size; a++)
-		for (b = 0; (int)b < c + 1; b++)
+		for (b = 0; (int)b < k + 1; b++)
 			if ((int)b == array[a])
 				ptr[b] += 1;
-	for (a = 0; (int)a < c; a++)
+	for (a = 0; (int)a < k; a++)
 		ptr[a + 1] = ptr[a] + ptr[a + 1];
-	print_array(ptr, c + 1);
-	/*Create the sort array*/
+	print_array(ptr, k + 1);
+	/*sort array*/
 	sort_ar = malloc(size * sizeof(int));
 	if (!sort_ar)
 	{
